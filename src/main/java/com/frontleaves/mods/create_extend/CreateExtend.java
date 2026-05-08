@@ -2,10 +2,12 @@ package com.frontleaves.mods.create_extend;
 
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.content.equipment.goggles.GogglesItem;
+import dev.ftb.mods.ftbultimine.BlockBreakingRegistry;
 import io.wispforest.accessories.api.AccessoriesCapability;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import com.frontleaves.mods.create_extend.handler.CreateWrenchBlockBreakHandler;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
@@ -64,6 +66,13 @@ public class CreateExtend {
                             stack -> stack.is(createGogglesMatcher))
                 );
                 LOGGER.info("Registered Accessories wearing predicate for create goggles");
+            }
+
+            if (ModList.get().isLoaded("ftbultimine")) {
+                BlockBreakingRegistry.INSTANCE.registerHandler(
+                    CreateWrenchBlockBreakHandler.INSTANCE
+                );
+                LOGGER.info("Registered FTB Ultimine compatibility handler for Create wrench");
             }
         });
     }
