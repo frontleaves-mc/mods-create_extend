@@ -21,6 +21,7 @@ public class AviatorsGogglesCurios {
     public static final String MODID = "aviators_goggles_curios";
     private static final Logger LOGGER = LogUtils.getLogger();
     private static final ResourceLocation AVIATORS_GOGGLES = ResourceLocation.parse("aeronautics:aviators_goggles");
+    private static final ResourceLocation CREATE_GOGGLES = ResourceLocation.parse("create:goggles");
 
     public AviatorsGogglesCurios(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::onCommonSetup);
@@ -54,6 +55,15 @@ public class AviatorsGogglesCurios {
                             stack -> stack.is(gogglesMatcher))
                 );
                 LOGGER.info("Registered Accessories wearing predicate for aviator goggles");
+
+                Predicate<Holder<Item>> createGogglesMatcher = holder ->
+                    holder.unwrapKey().map(key -> key.location().equals(CREATE_GOGGLES)).orElse(false);
+                GogglesItem.addIsWearingPredicate(player ->
+                    AccessoriesCapability.get(player) != null
+                        && AccessoriesCapability.get(player).isEquipped(
+                            stack -> stack.is(createGogglesMatcher))
+                );
+                LOGGER.info("Registered Accessories wearing predicate for create goggles");
             }
         });
     }
