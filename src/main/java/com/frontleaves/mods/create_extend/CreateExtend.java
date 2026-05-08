@@ -1,4 +1,4 @@
-package com.frontleaves.mods.aviators_goggles_curios;
+package com.frontleaves.mods.create_extend;
 
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.content.equipment.goggles.GogglesItem;
@@ -16,14 +16,14 @@ import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.function.Predicate;
 
-@Mod(AviatorsGogglesCurios.MODID)
-public class AviatorsGogglesCurios {
-    public static final String MODID = "aviators_goggles_curios";
+@Mod(CreateExtend.MODID)
+public class CreateExtend {
+    public static final String MODID = "create_extend";
     private static final Logger LOGGER = LogUtils.getLogger();
     private static final ResourceLocation AVIATORS_GOGGLES = ResourceLocation.parse("aeronautics:aviators_goggles");
     private static final ResourceLocation CREATE_GOGGLES = ResourceLocation.parse("create:goggles");
 
-    public AviatorsGogglesCurios(IEventBus modEventBus, ModContainer modContainer) {
+    public CreateExtend(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::onCommonSetup);
     }
 
