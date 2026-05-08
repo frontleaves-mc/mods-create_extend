@@ -50,3 +50,10 @@ type = "optional"
 versionRange = "[1.0,)"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies."${mod_id}"]]
+modId = "ftbultimine"
+type = "optional"
+versionRange = "[2101.1,)"
+ordering = "AFTER"
+side = "BOTH"
