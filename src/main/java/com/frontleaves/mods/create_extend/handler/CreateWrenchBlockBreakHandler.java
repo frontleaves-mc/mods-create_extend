@@ -19,9 +19,36 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.level.BlockEvent;
 
+/**
+ * Create 扳手方块破坏处理器。
+ *
+ * <p>实现 FTB Ultimine 的 {@link BlockBreakHandler} 接口，
+ * 在玩家使用 FTB Ultimine 连锁挖掘且手持 Create 扳手时，
+ * 以正确的扳手拆卸逻辑处理方块破坏（掉落正确物品、播放拆卸音效等）。</p>
+ *
+ * <p>处理流程：</p>
+ * <ol>
+ *   <li>检查玩家是否手持 Create 扳手（主手或副手）</li>
+ *   <li>检查玩家是否按住 Shift（扳手拆卸模式）</li>
+ *   <li>检查目标方块是否为 {@link IWrenchable} 或带有扳手拾取标签</li>
+ *   <li>触发 NeoForge 破坏事件并处理掉落物</li>
+ *   <li>播放 Create 扳手拆卸音效</li>
+ * </ol>
+ */
 public enum CreateWrenchBlockBreakHandler implements BlockBreakHandler {
+    /** 单例实例 */
     INSTANCE;
 
+    /**
+     * 处理单个方块的破坏逻辑。
+     *
+     * @param player    执行破坏的玩家
+     * @param pos       方块位置
+     * @param state     方块状态
+     * @param shape     FTB Ultimine 挖掘形状
+     * @param hitResult 方块命中结果
+     * @return 处理结果：{@link Result#SUCCESS} 表示成功处理，{@link Result#PASS} 表示跳过，{@link Result#FAIL} 表示取消
+     */
     @Override
     public Result breakBlock(Player player, BlockPos pos, BlockState state, Shape shape, BlockHitResult hitResult) {
         if (!(player.getMainHandItem().getItem() instanceof WrenchItem) && !(player.getOffhandItem().getItem() instanceof WrenchItem)) {
@@ -78,6 +105,11 @@ public enum CreateWrenchBlockBreakHandler implements BlockBreakHandler {
         return Result.SUCCESS;
     }
 
+    /**
+     * 所有方块破坏完成后的回调。当前无额外处理逻辑。
+     *
+     * @param player 执行破坏的玩家
+     */
     @Override
     public void postBreak(Player player) {
     }
