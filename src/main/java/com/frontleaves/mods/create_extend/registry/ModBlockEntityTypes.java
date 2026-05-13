@@ -23,59 +23,54 @@ public class ModBlockEntityTypes {
     private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES =
         DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, CreateExtend.MODID);
 
+    @SuppressWarnings("unchecked")
+    private static final DeferredHolder<BlockEntityType<?>, ?>[] SLOT = new DeferredHolder[3];
+
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<KineticBlockEntity>> EMERALD_ENCASED_SHAFT =
         BLOCK_ENTITY_TYPES.register("emerald_encased_shaft", () ->
             BlockEntityType.Builder.of(
-                new KineticFactory(() -> EMERALD_ENCASED_SHAFT),
+                new KineticFactory(() -> SLOT[0]),
                 ModBlocks.EMERALD_ENCASED_SHAFT.get()
             ).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SimpleKineticBlockEntity>> EMERALD_ENCASED_COGWHEEL =
         BLOCK_ENTITY_TYPES.register("emerald_encased_cogwheel", () ->
             BlockEntityType.Builder.of(
-                new SimpleFactory(() -> EMERALD_ENCASED_COGWHEEL),
+                new SimpleFactory(() -> SLOT[1]),
                 ModBlocks.EMERALD_ENCASED_COGWHEEL.get()
             ).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SimpleKineticBlockEntity>> EMERALD_ENCASED_LARGE_COGWHEEL =
         BLOCK_ENTITY_TYPES.register("emerald_encased_large_cogwheel", () ->
             BlockEntityType.Builder.of(
-                new SimpleFactory(() -> EMERALD_ENCASED_LARGE_COGWHEEL),
+                new SimpleFactory(() -> SLOT[2]),
                 ModBlocks.EMERALD_ENCASED_LARGE_COGWHEEL.get()
             ).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITY_TYPES.register(eventBus);
+        SLOT[0] = EMERALD_ENCASED_SHAFT;
+        SLOT[1] = EMERALD_ENCASED_COGWHEEL;
+        SLOT[2] = EMERALD_ENCASED_LARGE_COGWHEEL;
     }
 
     private record KineticFactory(
-        Supplier<DeferredHolder<BlockEntityType<?>, BlockEntityType<KineticBlockEntity>>> holder)
+        Supplier<DeferredHolder<BlockEntityType<?>, ?>> holder)
         implements BlockEntityType.BlockEntitySupplier<KineticBlockEntity> {
         @Override
+        @SuppressWarnings("unchecked")
         public KineticBlockEntity create(BlockPos pos, BlockState state) {
-            return new KineticBlockEntity(holder.get().get(), pos, state);
+            return new KineticBlockEntity(((DeferredHolder<BlockEntityType<?>, BlockEntityType<KineticBlockEntity>>) holder.get()).get(), pos, state);
         }
     }
 
     private record SimpleFactory(
-        Supplier<DeferredHolder<BlockEntityType<?>, BlockEntityType<SimpleKineticBlockEntity>>> holder)
+        Supplier<DeferredHolder<BlockEntityType<?>, ?>> holder)
         implements BlockEntityType.BlockEntitySupplier<SimpleKineticBlockEntity> {
         @Override
+        @SuppressWarnings("unchecked")
         public SimpleKineticBlockEntity create(BlockPos pos, BlockState state) {
-            return new SimpleKineticBlockEntity(holder.get().get(), pos, state);
+            return new SimpleKineticBlockEntity(((DeferredHolder<BlockEntityType<?>, BlockEntityType<SimpleKineticBlockEntity>>) holder.get()).get(), pos, state);
         }
-    }
-}
-
-    private static SimpleKineticBlockEntity createEncasedCogwheel(BlockPos pos, BlockState state) {
-        return new SimpleKineticBlockEntity(EMERALD_ENCASED_COGWHEEL.get(), pos, state);
-    }
-
-    private static SimpleKineticBlockEntity createEncasedLargeCogwheel(BlockPos pos, BlockState state) {
-        return new SimpleKineticBlockEntity(EMERALD_ENCASED_LARGE_COGWHEEL.get(), pos, state);
-    }
-
-    public static void register(IEventBus eventBus) {
-        BLOCK_ENTITY_TYPES.register(eventBus);
     }
 }
