@@ -1,0 +1,6 @@
+{
+  "replace": false,
+  "order": 111,
+  "icon": "protection_pixel:gui/slot/motor",
+  "validators": ["curios:tag"]
+}

@@ -1,0 +1,6 @@
+{
+  "replace": false,
+  "order": 110,
+  "icon": "protection_pixel:gui/slot/power",
+  "validators": ["curios:tag"]
+}
