@@ -1,9 +1,10 @@
 package com.frontleaves.mods.create_extend.registry;
 
 import com.frontleaves.mods.create_extend.CreateExtend;
+import com.frontleaves.mods.create_extend.content.decoration.encasing.EmeraldEncasedCogwheelBlock;
+import com.frontleaves.mods.create_extend.content.decoration.encasing.EmeraldEncasedLargeCogwheelBlock;
+import com.frontleaves.mods.create_extend.content.decoration.encasing.EmeraldEncasedShaftBlock;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
-import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogwheelBlock;
-import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedShaftBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -37,7 +38,7 @@ public class ModBlocks {
 
     /** 绿宝石包裹轴方块 */
     public static final DeferredBlock<Block> EMERALD_ENCASED_SHAFT = registerBlock("emerald_encased_shaft",
-        () -> new EncasedShaftBlock(Block.Properties.of()
+        () -> new EmeraldEncasedShaftBlock(Block.Properties.of()
             .mapColor(MapColor.PODZOL)
             .strength(3.0f, 6.0f)
             .sound(SoundType.STONE)
@@ -46,7 +47,7 @@ public class ModBlocks {
 
     /** 绿宝石包裹齿轮方块 */
     public static final DeferredBlock<Block> EMERALD_ENCASED_COGWHEEL = registerBlock("emerald_encased_cogwheel",
-        () -> new EncasedCogwheelBlock(Block.Properties.of()
+        () -> new EmeraldEncasedCogwheelBlock(Block.Properties.of()
             .mapColor(MapColor.PODZOL)
             .strength(3.0f, 6.0f)
             .sound(SoundType.STONE)
@@ -56,12 +57,11 @@ public class ModBlocks {
 
     /** 绿宝石包裹大齿轮方块 */
     public static final DeferredBlock<Block> EMERALD_ENCASED_LARGE_COGWHEEL = registerBlock("emerald_encased_large_cogwheel",
-        () -> new EncasedCogwheelBlock(Block.Properties.of()
+        () -> new EmeraldEncasedLargeCogwheelBlock(Block.Properties.of()
             .mapColor(MapColor.PODZOL)
             .strength(3.0f, 6.0f)
             .sound(SoundType.STONE)
             .requiresCorrectToolForDrops(),
-            true,
             () -> EMERALD_CASING.get()));
 
     /**

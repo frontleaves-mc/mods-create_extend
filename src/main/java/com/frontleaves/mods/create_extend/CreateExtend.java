@@ -4,6 +4,7 @@ import com.frontleaves.mods.create_extend.compat.FTBUltimineCompat;
 import com.frontleaves.mods.create_extend.compat.GogglesCompat;
 import com.frontleaves.mods.create_extend.content.decoration.encasing.EmeraldEncasing;
 import com.frontleaves.mods.create_extend.registry.ModBlocks;
+import com.frontleaves.mods.create_extend.registry.ModBlockEntityTypes;
 import com.frontleaves.mods.create_extend.registry.ModCreativeTabs;
 import com.frontleaves.mods.create_extend.registry.ModItems;
 import com.mojang.logging.LogUtils;
@@ -42,6 +43,7 @@ public class CreateExtend {
     public CreateExtend(IEventBus modEventBus, ModContainer modContainer) {
         ModBlocks.register(modEventBus);
         ModItems.register(modEventBus);
+        ModBlockEntityTypes.register(modEventBus);
         ModCreativeTabs.register(modEventBus);
         modEventBus.addListener(this::onCommonSetup);
     }
