@@ -4,5 +4,6 @@
   "block.create_extend.emerald_encased_cogwheel": "Emerald Encased Cogwheel",
   "block.create_extend.emerald_encased_large_cogwheel": "Emerald Encased Large Cogwheel",
   "item.create_extend.emerald_nugget": "Emerald Nugget",
-  "item.create_extend.emerald_alloy": "Emerald Alloy"
+  "item.create_extend.emerald_alloy": "Emerald Alloy",
+  "itemGroup.create_extend.base": "Create Extend"
 }

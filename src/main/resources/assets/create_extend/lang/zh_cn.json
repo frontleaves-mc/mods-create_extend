@@ -4,5 +4,6 @@
   "block.create_extend.emerald_encased_cogwheel": "绿宝石包裹齿轮",
   "block.create_extend.emerald_encased_large_cogwheel": "绿宝石包裹大齿轮",
   "item.create_extend.emerald_nugget": "绿宝石粒",
-  "item.create_extend.emerald_alloy": "绿宝石合金"
+  "item.create_extend.emerald_alloy": "绿宝石合金",
+  "itemGroup.create_extend.base": "机械动力：锋楪扩展"
 }
