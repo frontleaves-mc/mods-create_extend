@@ -33,11 +33,8 @@ public class ModCreativeTabs {
                 // 物品
                 output.accept(new ItemStack(ModItems.EMERALD_NUGGET.get()));
                 output.accept(new ItemStack(ModItems.EMERALD_ALLOY.get()));
-                // 方块
+                // 方块（包裹变体通过手持机壳右键传动杆/齿轮获得，不在此列出）
                 output.accept(new ItemStack(ModBlocks.EMERALD_CASING.get()));
-                output.accept(new ItemStack(ModBlocks.EMERALD_ENCASED_SHAFT.get()));
-                output.accept(new ItemStack(ModBlocks.EMERALD_ENCASED_COGWHEEL.get()));
-                output.accept(new ItemStack(ModBlocks.EMERALD_ENCASED_LARGE_COGWHEEL.get()));
             })
             .build());
 
