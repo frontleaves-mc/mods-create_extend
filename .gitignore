@@ -22,3 +22,5 @@ run
 
 ### AI ###
 .sisyphus/
+.opencode/
+*.heapsnapshot
