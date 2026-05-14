@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=down": { "model": "create_extend:block/azure_engine", "x": 180 },
+    "facing=east": { "model": "create_extend:block/azure_engine_horizontal", "y": 90 },
+    "facing=north": { "model": "create_extend:block/azure_engine_horizontal" },
+    "facing=south": { "model": "create_extend:block/azure_engine_horizontal", "y": 180 },
+    "facing=up": { "model": "create_extend:block/azure_engine" },
+    "facing=west": { "model": "create_extend:block/azure_engine_horizontal", "y": 270 }
+  }
+}

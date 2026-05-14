@@ -1,8 +1,5 @@
 package com.frontleaves.mods.create_extend.client;
 
-import java.lang.reflect.Method;
-import java.util.function.Function;
-
 import com.frontleaves.mods.create_extend.registry.ModBlocks;
 import com.simibubi.create.CreateClient;
 import com.simibubi.create.content.decoration.encasing.CasingConnectivity;
@@ -19,6 +16,9 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 
+import java.lang.reflect.Method;
+import java.util.function.Function;
+
 /**
  * 绿宝石机壳 CTM 连接纹理注册。
  *
@@ -30,19 +30,6 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
  */
 @EventBusSubscriber(modid = "create_extend", bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModCTMRegistration {
-
-    @SuppressWarnings("unchecked")
-    private static void registerCTModel(ResourceLocation location,
-            Function<BakedModel, ? extends BakedModel> factory) {
-        try {
-            Object customModels = CreateClient.MODEL_SWAPPER.getCustomBlockModels();
-            Method registerMethod = customModels.getClass()
-                .getDeclaredMethod("register", ResourceLocation.class, Function.class);
-            registerMethod.invoke(customModels, location, factory);
-        } catch (Exception e) {
-            throw new RuntimeException("无法注册 CTM 模型: " + location, e);
-        }
-    }
 
     /**
      * 注册绿宝石机壳相关方块的 CTM 连接纹理。
@@ -67,26 +54,54 @@ public class ModCTMRegistration {
             );
 
             registerCTModel(ResourceLocation.parse("create_extend:emerald_casing"),
-                model -> new CTModel(model, new EncasedCTBehaviour(emeraldCasingShift)));
+                (model) -> new CTModel(model, new EncasedCTBehaviour(emeraldCasingShift)));
             CreateClient.CASING_CONNECTIVITY.makeCasing(
                 ModBlocks.EMERALD_CASING.get(), emeraldCasingShift);
 
             registerCTModel(ResourceLocation.parse("create_extend:emerald_encased_shaft"),
-                model -> new CTModel(model, new EncasedCTBehaviour(emeraldCasingShift)));
+                (model) -> new CTModel(model, new EncasedCTBehaviour(emeraldCasingShift)));
             CreateClient.CASING_CONNECTIVITY.make(
                 ModBlocks.EMERALD_ENCASED_SHAFT.get(),
                 emeraldCasingShift,
                 (state, face) -> face.getAxis() != state.getValue(EncasedShaftBlock.AXIS));
 
             registerCTModel(ResourceLocation.parse("create_extend:emerald_encased_cogwheel"),
-                model -> new CTModel(model, new EncasedCTBehaviour(emeraldCasingShift)));
+                (model) -> new CTModel(model, new EncasedCTBehaviour(emeraldCasingShift)));
             CreateClient.CASING_CONNECTIVITY.makeCasing(
                 ModBlocks.EMERALD_ENCASED_COGWHEEL.get(), emeraldCasingShift);
 
             registerCTModel(ResourceLocation.parse("create_extend:emerald_encased_large_cogwheel"),
-                model -> new CTModel(model, new EncasedCTBehaviour(emeraldCasingShift)));
+                (model) -> new CTModel(model, new EncasedCTBehaviour(emeraldCasingShift)));
             CreateClient.CASING_CONNECTIVITY.makeCasing(
                 ModBlocks.EMERALD_ENCASED_LARGE_COGWHEEL.get(), emeraldCasingShift);
         });
+    }
+
+    /**
+     * 通过反射调用 {@code CustomBlockModels#register} 注册 CTM 模型。
+     *
+     * <p>由于 Registrate 未作为编译依赖声明，无法直接引用
+     * {@code NonNullFunction} 类型，因此通过方法名反射查找并调用。</p>
+     *
+     * @param location 方块资源位置
+     * @param factory  模型工厂函数（BakedModel → BakedModel）
+     */
+    private static void registerCTModel(ResourceLocation location, Function<BakedModel, BakedModel> factory) {
+        try {
+            Object customModels = CreateClient.MODEL_SWAPPER.getCustomBlockModels();
+            Method registerMethod = null;
+            for (Method m : customModels.getClass().getDeclaredMethods()) {
+                if (m.getName().equals("register")) {
+                    registerMethod = m;
+                    break;
+                }
+            }
+            if (registerMethod == null) {
+                throw new NoSuchMethodException("No method named 'register' found in " + customModels.getClass().getName());
+            }
+            registerMethod.invoke(customModels, location, factory);
+        } catch (Exception e) {
+            throw new RuntimeException("无法注册 CTM 模型: " + location, e);
+        }
     }
 }

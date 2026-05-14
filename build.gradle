@@ -96,6 +96,8 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
     compileOnly("com.simibubi.create:create-1.21.1:${create_version}:slim") { transitive = false }
+    compileOnly("dev.engine-room.flywheel:flywheel-neoforge-1.21.1:1.0.6") { transitive = false }
+    compileOnly("net.createmod.ponder:ponder-neoforge:1.0.82+mc1.21.1") { transitive = false }
     compileOnly("top.theillusivec4.curios:curios-neoforge:${curios_version}:api")
     compileOnly("io.wispforest:accessories-neoforge:${accessories_version}") { transitive = false }
     compileOnly("dev.ftb.mods:ftb-ultimine-neoforge:${ftb_ultimine_version}") { transitive = false }

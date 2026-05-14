@@ -5,5 +5,10 @@
   "block.create_extend.emerald_encased_large_cogwheel": "Emerald Encased Large Cogwheel",
   "item.create_extend.emerald_nugget": "Emerald Nugget",
   "item.create_extend.emerald_alloy": "Emerald Alloy",
+  "block.create_extend.cyan_engine": "Cyan Source Engine",
+  "block.create_extend.azure_engine": "Azure Abyss Engine",
+  "block.create_extend.indigo_engine": "Indigo Depth Engine",
+  "block.create_extend.violet_engine": "Violet Nova Engine",
+  "block.create_extend.aether_engine": "Aether Apex Engine",
   "itemGroup.create_extend.base": "Create Extend"
 }

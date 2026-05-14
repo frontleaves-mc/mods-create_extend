@@ -5,5 +5,10 @@
   "block.create_extend.emerald_encased_large_cogwheel": "绿宝石包裹大齿轮",
   "item.create_extend.emerald_nugget": "绿宝石粒",
   "item.create_extend.emerald_alloy": "绿宝石合金",
+  "block.create_extend.cyan_engine": "湛源动力引擎",
+  "block.create_extend.azure_engine": "碧渊动力引擎",
+  "block.create_extend.indigo_engine": "墨渊动力引擎",
+  "block.create_extend.violet_engine": "紫曜动力引擎",
+  "block.create_extend.aether_engine": "苍穹动力引擎",
   "itemGroup.create_extend.base": "机械动力：锋楪扩展"
 }

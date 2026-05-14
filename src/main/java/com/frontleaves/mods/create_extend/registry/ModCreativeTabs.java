@@ -9,8 +9,6 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.List;
-
 /**
  * 模组创造模式物品栏注册。
  *
@@ -35,6 +33,12 @@ public class ModCreativeTabs {
                 output.accept(new ItemStack(ModItems.EMERALD_ALLOY.get()));
                 // 方块（包裹变体通过手持机壳右键传动杆/齿轮获得，不在此列出）
                 output.accept(new ItemStack(ModBlocks.EMERALD_CASING.get()));
+                // 自定义引擎方块（按 SU 升序）
+                output.accept(new ItemStack(ModBlocks.CYAN_ENGINE.get()));
+                output.accept(new ItemStack(ModBlocks.AZURE_ENGINE.get()));
+                output.accept(new ItemStack(ModBlocks.INDIGO_ENGINE.get()));
+                output.accept(new ItemStack(ModBlocks.VIOLET_ENGINE.get()));
+                output.accept(new ItemStack(ModBlocks.AETHER_ENGINE.get()));
             })
             .build());
 

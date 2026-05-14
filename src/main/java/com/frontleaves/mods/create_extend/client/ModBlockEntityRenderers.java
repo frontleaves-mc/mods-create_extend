@@ -36,6 +36,12 @@ public class ModBlockEntityRenderers {
         event.registerBlockEntityRenderer(
             ModBlockEntityTypes.EMERALD_ENCASED_LARGE_COGWHEEL.get(),
             context -> createCogRenderer(true, context));
+
+        event.registerBlockEntityRenderer(ModBlockEntityTypes.CYAN_ENGINE_BE.get(), context -> createShaftRenderer(context));
+        event.registerBlockEntityRenderer(ModBlockEntityTypes.AZURE_ENGINE_BE.get(), context -> createShaftRenderer(context));
+        event.registerBlockEntityRenderer(ModBlockEntityTypes.INDIGO_ENGINE_BE.get(), context -> createShaftRenderer(context));
+        event.registerBlockEntityRenderer(ModBlockEntityTypes.VIOLET_ENGINE_BE.get(), context -> createShaftRenderer(context));
+        event.registerBlockEntityRenderer(ModBlockEntityTypes.AETHER_ENGINE_BE.get(), context -> createShaftRenderer(context));
     }
 
     /**
