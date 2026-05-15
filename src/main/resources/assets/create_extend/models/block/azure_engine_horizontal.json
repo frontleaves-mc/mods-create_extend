@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "side": "create_extend:block/azure_engine",
-    "bottom": "create_extend:block/azure_engine_top",
-    "top": "create_extend:block/azure_engine_top",
-    "particle": "create_extend:block/azure_engine"
-  }
-}
