@@ -101,6 +101,7 @@ dependencies {
     compileOnly("top.theillusivec4.curios:curios-neoforge:${curios_version}:api")
     compileOnly("io.wispforest:accessories-neoforge:${accessories_version}") { transitive = false }
     compileOnly("dev.ftb.mods:ftb-ultimine-neoforge:${ftb_ultimine_version}") { transitive = false }
+    compileOnly("com.tterrag.registrate:Registrate:MC1.21-1.3.0+67") { transitive = false }
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
